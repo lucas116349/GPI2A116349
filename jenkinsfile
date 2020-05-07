@@ -1,0 +1,44 @@
+pipeline {
+agent any
+stages {
+
+stage('git') {
+    steps{
+        git url:'https://github.com/lucas116349/GPI2A116349.git'
+    }
+}
+
+stage('Build') {
+steps {
+    
+    dir('PlataformaMain/simple'){
+        sh 'mvn -B -DskipTests clean package'
+    }
+    
+    dir('Arduino'){
+        sh 'make'
+    }
+    
+    dir('Android/ActivityA116349'){
+        sh 'gradle build'
+    }
+    
+}
+
+}
+
+stage('Test') {
+
+steps {
+
+    dir('simple'){
+        sh 'mvn test'
+    }
+
+}
+
+}
+
+}
+
+}
