@@ -11,15 +11,15 @@ stage('git') {
 stage('Build') {
 steps {
     
-    dir('PlataformaMain/simple'){
+    dir('lucas116349Proyecto1/PlataformaMain/simple'){
         sh 'mvn -B -DskipTests clean package'
     }
     
-    dir('Arduino'){
+    dir('lucas116349Proyecto1/Arduino'){
         sh 'make'
     }
     
-    dir('Android/ActivityA116349'){
+    dir('lucas116349Proyecto1/Android/ActivityA116349'){
         sh 'gradle build'
     }
     
@@ -31,7 +31,7 @@ stage('Test') {
 
 steps {
 
-    dir('simple'){
+    dir('lucas116349Proyecto1/PlataformaMain/simple'){
         sh 'mvn test'
     }
 
